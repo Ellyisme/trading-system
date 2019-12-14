@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="trade.css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light pt-3" bg-dark="" style="	background-image: url(https://assets-global.website-files.com/5bc662b786ecfc12c8d29e0b/5d07c76a696bfc4b3cb88294_cryptocurrency.jpg)">
+    <div class="container">
+      <a class="navbar-brand text-primary" href="#">
+        <i class="fa fa-anchor fa-2x fa-fw pull-left d-inline bg-light"></i>
+        <b class="text-white"> Wallet: </b><br><br> BTC number : {{current_holding['BTC'][0]}} and BTC vwp : {{current_holding['BTC'][1]}} <br> ETH number : {{current_holding['ETH'][0]}} and ETH vwp : {{current_holding['ETH'][1]}} <br> LTC number : {{current_holding['LTC'][0]}} and LTC vwp : {{current_holding['LTC'][1]}} <br>
+      </a>
+      <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar4">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link text-white" href="/home"><b>Home</b></a> </li>
+          <li class="nav-item"> <a class="nav-link text-white" href="/trade"><i><b>Trading</b></i></a> </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><b>Account</b></a>
+            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px;
+              transform: translate3d(0px, 40px, 0px);">
+              <a class="dropdown-item " href="/pnl"><b>PnL</b></a>
+              <a class="dropdown-item" href="/blotter"><b>Blotter</b></a>
+              <a class="dropdown-item" href="/bank"><b>Banking</b></a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"><b>Log Out</b></a>
+            </div>
+          </li>
+          <li class="nav-item"> <a class="nav-link text-white" href="#"><b>FAQ</b></a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-light" href="/home">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+  <section class="header  navigation" style="	background-image: url(https://assets-global.website-files.com/5bc662b786ecfc12c8d29e0b/5d07c76a696bfc4b3cb88294_cryptocurrency.jpg)">
+    <div class="container py-3">
+      <div class="row mr-5">
+        <div class="ml-5 ">
+          <div class="row">
+          </div>
+        </div>
+        <a class="#">
+          <div class="row">
+            <div class="col-md text-white col-md-12" style="">
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-4 offset-md-8" style="border-color: white;">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="table-responsive py-5 mr-5 mt-0">
+                <h1 class="text-white ml-2 mt-0 mb-1"><b>Market Status (USD)</b></h1>
+                <table class="table table-striped table-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Symbol</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Bid</th>
+                      <th scope="col">Ask</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">BTC</th>
+                      <td>Bitcoin</td>
+                      <td>${{ prices['btc_price']}}</td>
+                      <td>67.22M</td>
+                      <td>63.73M</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">ETH</th>
+                      <td>Ethereum</td>
+                      <td>${{ prices['eth_price']}}</td>
+                      <td>20.97M</td>
+                      <td>22.3M</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">LTC</th>
+                      <td>Litecoin</td>
+                      <td>${{ prices['ltc_price']}}</td>
+                      <td>6.41M</td>
+                      <td>6.72M</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <form class="p-1 section-light bg-light" method="post" action="http://localhost:5000/buysell">
+                <h4 class="mb-3 text-center" ><b>Transaction</b></h4>
+                <div class="form-group">
+                  {{ form.transaction.label}} {{form.transaction}}
+                  <br>
+                  {{ form.coins.label}} {{form.coins}}
+                  <br>
+                  {{ form.quantity.label}} {{form.quantity}}
+                  <br>
+                </div>
+                <button type="submit" class="btn mt-4 btn-block p-2 text-uppercase text-center">
+                  {{form.submit}}
+                </button>
+              </form>
+            </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous" style=""></script>
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" style=""></script>
+        </div>
+      </div>
+    </div>
+  </section><i class="d-block fa fa-angle-down fa-2x">
+    <h2 align="center" class="bg-infor text-"><b>Market Insight</b></h2>
+    <div class="py-1" bg-dark="">
+      <div class="container">
+        <div class="row">
+          <div class="px-lg-3 d-flex flex-column col-lg-6">
+            <h3 style="#" class="#">
+              <a href="https://www.bloomberg.com/news/articles/2019-11-29/crypto-goes-up-and-down-but-is-it-getting-anywhere-quicktake" class="Fw(b) Fz(20px) Lh(23px) Fz(17px)--sm1024 Lh(19px)--sm1024 Td(n) C(#0078ff):h C(#000) LineClamp(2,46px) LineClamp(2,38px)--sm1024"><b>Crypto Goes Up and Down, But Is It Getting Anywhere?</b></a></h3>
+            <p class="text-left w-100">
+              <font size="4"><i>Bitcoin followers have seen this movie before: In the first half of 2019 Bitcoin soared again, more than tripling in value before sliding by more than 40%. What was new this year was that Bitcoin, the original cryptocurrency, had to share the spotlight more than ever before... </i></font>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img class="Trsdu(.42s) W(100%) Trsdu(0s)! Bdrs(2px) mx-auto bg-dark" alt="Litecoin set to buck bear market trend with breakout above $50" src="https://s.yimg.com/uu/api/res/1.2/kboF7MfVIQDX41MnSd2FIw--~B/Zmk9c3RyaW07aD0xMjM7cHlvZmY9MDtxPTgwO3c9MjIwO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en-GB/coin_rivet_596/80d04c40c39f9abf5e4b6db9bdad0b5a" style="" srcset="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iXaSS3GEPtg0/v1/1400x-1.jpg" width="70%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="py-2">
+      <div class="container">
+        <div class="row">
+          <div class="px-lg-3 d-flex flex-column col-lg-6">
+            <h3 style="#" class="#">
+              <a href="https://finance.yahoo.com/news/litecoin-set-buck-bear-market-150046517.html" class="Fw(b) Fz(20px) Lh(23px) Fz(17px)--sm1024 Lh(19px)--sm1024 Td(n) C(#0078ff):h C(#000) LineClamp(2,46px) LineClamp(2,38px)--sm1024"><b>Litecoin set to buck bear market trend with breakout above $50</b></a></h3>
+            <p class="text-left text-capitalize w-100">
+              <font size="4"><i>Litecoin (LTC) has recovered impressively over the past four days following last weekend's nervous descent to $43... </i></font>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <img class="Trsdu(.42s) W(100%) Trsdu(0s)! Bdrs(2px) mx-auto bg-dark" alt="Litecoin set to buck bear market trend with breakout above $50" src="https://s.yimg.com/uu/api/res/1.2/kboF7MfVIQDX41MnSd2FIw--~B/Zmk9c3RyaW07aD0xMjM7cHlvZmY9MDtxPTgwO3c9MjIwO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en-GB/coin_rivet_596/80d04c40c39f9abf5e4b6db9bdad0b5a" style="" srcset="https://s.yimg.com/uu/api/res/1.2/kboF7MfVIQDX41MnSd2FIw--~B/Zmk9c3RyaW07aD0xMjM7cHlvZmY9MDtxPTgwO3c9MjIwO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en-GB/coin_rivet_596/80d04c40c39f9abf5e4b6db9bdad0b5a 1x,https://s.yimg.com/uu/api/res/1.2/R22R.430p99DHVedfMbong--~B/Zmk9c3RyaW07aD0yNDY7cHlvZmY9MDtxPTgwO3c9NDQwO3NtPTE7YXBwaWQ9eXRhY2h5b24-/https://media.zenfs.com/en-GB/coin_rivet_596/80d04c40c39f9abf5e4b6db9bdad0b5a 2x" width="70%"></div>
+        </div>
+      </div>
+    </div>
+    <font size="5">
+      <div class="py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center d-md-flex align-items-center"> <i class="d-block fa fa-2x mr-md-5 text-primary fa-heart"></i>
+              <ul class="nav mx-md-auto d-flex justify-content-center">
+                <li class="nav-item"> <a class="nav-link active" href="/home">Home</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+              </ul>
+              <div class="row">
+                <div class="col-md-12 d-flex align-items-center justify-content-md-between justify-content-center my-2"> <a href="#">
+                    <i class="d-block fa fa-facebook-official text-muted fa-lg mx-2"></i>
+                  </a> <a href="#">
+                    <i class="d-block fa fa-instagram text-muted fa-lg mx-2"></i>
+                  </a> <a href="#">
+                    <i class="d-block fa fa-twitter text-muted fa-lg ml-2"></i>
+                  </a> </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <p class="mt-2 mb-0">© 2019 Code Pirate - All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </i>
+  <font size="5">
+  </font>
+</body>
+
+</html>
